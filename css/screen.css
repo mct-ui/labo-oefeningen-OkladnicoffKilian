@@ -2,6 +2,24 @@
   #FONTS
 \*------------------------------------*/
 
+@font-face {
+    font-family: "Clear Sans";
+    src: url(../fonts/ClearSans-Light-webfont.woff);
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: "Clear Sans";
+    src: url(../fonts/ClearSans-Regular-webfont.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Clear Sans";
+    src: url(../fonts/ClearSans-Medium-webfont.woff);
+    font-weight: 600;
+}
+
 /*------------------------------------*\
   #GENERIC
 \*------------------------------------*/
@@ -19,11 +37,12 @@ html {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: white;
+    background: linear-gradient(to bottom right, #0A257D, #061649);
+    background-attachment: fixed;
 }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
     box-sizing: inherit;
 }
 
@@ -67,9 +86,7 @@ img {
     Default markup for typographic elements
 */
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     font-weight: 400;
 }
 
@@ -91,31 +108,27 @@ h3 {
     margin: 0 0 24px;
 }
 
-h4,
-h5,
-h6 {
+h4, h5, h6 {
     font-size: 20px;
     line-height: 24px;
     margin: 0 0 24px;
 }
 
-p,
-ol,
-ul,
-dl,
-table,
-address,
-figure {
+p {
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 200;
+}
+
+p, ol, ul, dl, table, address, figure {
     margin: 0 0 24px;
 }
 
-ul,
-ol {
+ul, ol {
     padding-left: 24px;
 }
 
-li ul,
-li ol {
+li ul, li ol {
     margin-bottom: 0;
 }
 
@@ -150,10 +163,7 @@ a {
     transition: all .1s ease-in-out;
 }
 
-a:visited,
-a:active,
-a:hover,
-a:focus {
+a:visited, a:active, a:hover, a:focus {
     color: #8EC7FF;
 }
 
@@ -184,12 +194,10 @@ a:focus {
         padding-left: 48px;
         padding-right: 48px;
     }
-
     .o-row--md {
         padding-top: 48px;
         padding-bottom: 24px;
     }
-
     .o-row--lg {
         padding-top: 72px;
         padding-bottom: 48px;
@@ -205,7 +213,10 @@ a:focus {
 .o-container {
     margin-left: auto;
     margin-right: auto;
-    max-width: 56.4em; /* 56.4 * 20px = 1128px */
+    /* max-width: 56.4em; */
+    /* 56.4 * 20px = 1128px */
+    max-width: 79.875em;
+    /*1278px / 16 = 79.875*/
 }
 
 /*
@@ -215,22 +226,22 @@ a:focus {
 */
 
 .o-section {
-    display: flow-root; /* New solution! Fixes margin collapsing */
+    display: flow-root;
+    /* New solution! Fixes margin collapsing */
 }
 
-.o-section + .o-section {
+.o-section+.o-section {
     margin-top: 24px;
 }
 
 @media (min-width: 768px) {
-    .o-section--lg + .o-section--lg,
-    .o-section--xl + .o-section--xl {
+    .o-section--lg+.o-section--lg, .o-section--xl+.o-section--xl {
         margin-top: 48px;
     }
 }
 
 @media (min-width: 1200px) {
-    .o-section--xl + .o-section--xl {
+    .o-section--xl+.o-section--xl {
         margin-top: 72px;
     }
 }
@@ -248,9 +259,9 @@ a:focus {
     flex-wrap: wrap;
 }
 
-    .o-layout__item {
-        flex-basis: 100%;
-    }
+.o-layout__item {
+    flex-basis: 100%;
+}
 
 /* gutter modifiers, these affect o-layout__item too */
 
@@ -258,7 +269,7 @@ a:focus {
     margin: 0 -12px;
 }
 
-.o-layout--gutter > .o-layout__item {
+.o-layout--gutter>.o-layout__item {
     padding: 0 12px;
 }
 
@@ -266,7 +277,7 @@ a:focus {
     margin: 0 -6px;
 }
 
-.o-layout--gutter-sm > .o-layout__item {
+.o-layout--gutter-sm>.o-layout__item {
     padding: 0 6px;
 }
 
@@ -274,7 +285,7 @@ a:focus {
     margin: 0 -24px;
 }
 
-.o-layout--gutter-lg > .o-layout__item {
+.o-layout--gutter-lg>.o-layout__item {
     padding: 0 24px;
 }
 
@@ -361,9 +372,117 @@ a:focus {
     padding: 0;
 }
 
+.o-link {
+    text-decoration: none;
+    font-family: "Clear Sans";
+    font-weight: 200;
+    font-size: 14px;
+    color: white !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 32px;
+}
+
+@media (min-width: 768px) {
+    .o-layout {
+        flex-wrap: nowrap;
+    }
+    .o-nav {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .o-nav__item+.o-nav__item {
+        padding-left: 16px;
+        justify-content: flex-end;
+    }
+}
+
+.o-link:hover {
+    text-shadow: 0 0 8px #8EC7FF;
+}
+
 /*------------------------------------*\
   #COMPONENTS
 \*------------------------------------*/
+
+.c-logo {
+    height: 2rem;
+}
+
+.c-button {
+    text-align: center;
+    display: inline-block;
+    line-height: 24px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 400;
+    background: linear-gradient(to bottom right, #033AA7 0%, #0053FB 51%, #033AA7 100%);
+    transition: 0.3s;
+    background-size: 200% auto;
+    box-shadow: 0 0 5px -2px #8EC7FF;
+    margin: 16px 0;
+}
+
+@media (min-width: 768px) {
+    .c-button {
+        text-align: center;
+        display: inline-block;
+        line-height: 24px;
+        padding: 16px;
+        font-size: 16px;
+        font-weight: 400;
+        background: linear-gradient(to bottom right, #033AA7 0%, #0053FB 51%, #033AA7 100%);
+        transition: 0.3s;
+        background-size: 200% auto;
+        box-shadow: 0 0 5px -2px #8EC7FF;
+    }
+    .c-button:hover {
+        background-position: bottom right;
+        text-shadow: none;
+        box-shadow: 0 0 10px -2px #8EC7FF;
+    }
+}
+
+.c-figure-caption-inside__caption {
+    position: relative;
+    padding: 16px;
+    color: #000;
+    font-family: "Clear Sans";
+    background-color: white;
+    font-size: 16px;
+    font-weight: 600;
+    top: -16px;
+}
+
+@media (min-width: 768px) {
+    .c-figure-caption-inside {
+        max-width: 100%;
+        position: relative;
+    }
+    .c-figure-caption-inside__img {
+        position: absolute;
+        width: 100%;
+        left: auto;
+        right: auto;
+    }
+    .c-figure-caption-inside__caption {
+        position: relative;
+        top: 8px;
+        right: 8px;
+        float: right;
+        max-width: 40%;
+        text-align: right;
+        padding: 32px 16px;
+        color: #000;
+        font-size: 18px;
+        font-family: "Clear Sans";
+        font-weight: 400;
+        background-color: white;
+        border-right: 5px solid #0A257D;
+    }
+}
 
 /*------------------------------------*\
   #UTILITIES
@@ -375,8 +494,7 @@ a:focus {
     Utility classes to put specific colors onto elements
 */
 
-.u-color-secondary-base {
-}
+.u-color-secondary-base {}
 
 /*
     Utilities: spacing
@@ -685,9 +803,7 @@ a:focus {
 */
 
 @media print {
-    *,
-    *:before,
-    *:after {
+    *, *:before, *:after {
         background: transparent !important;
         color: #000 !important;
         /* Black prints faster:
@@ -695,8 +811,7 @@ a:focus {
         box-shadow: none !important;
         text-shadow: none !important;
     }
-    a,
-    a:visited {
+    a, a:visited {
         text-decoration: underline;
     }
     a[href]:after {
@@ -709,15 +824,13 @@ a:focus {
      * Don't show links that are fragment identifiers,
      * or use the `javascript:` pseudo protocol
      */
-    a[href^="#"]:after,
-    a[href^="javascript:"]:after {
+    a[href^="#"]:after, a[href^="javascript:"]:after {
         content: "";
     }
     pre {
         white-space: pre-wrap !important;
     }
-    pre,
-    blockquote {
+    pre, blockquote {
         border: 1px solid #999;
         page-break-inside: avoid;
     }
@@ -728,18 +841,14 @@ a:focus {
     thead {
         display: table-header-group;
     }
-    tr,
-    img {
+    tr, img {
         page-break-inside: avoid;
     }
-    p,
-    h2,
-    h3 {
+    p, h2, h3 {
         orphans: 3;
         widows: 3;
     }
-    h2,
-    h3 {
+    h2, h3 {
         page-break-after: avoid;
     }
 }
